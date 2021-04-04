@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A502FCCE261A2D8800BAD74D /* SliderExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */; };
 		A5E4F9862617F0ED007D2B11 /* CustomSliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9852617F0ED007D2B11 /* CustomSliderApp.swift */; };
-		A5E4F9882617F0ED007D2B11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9872617F0ED007D2B11 /* ContentView.swift */; };
+		A5E4F9882617F0ED007D2B11 /* SliderExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9872617F0ED007D2B11 /* SliderExamplesScreen.swift */; };
 		A5E4F98A2617F0EF007D2B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E4F9892617F0EF007D2B11 /* Assets.xcassets */; };
 		A5E4F98D2617F0EF007D2B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E4F98C2617F0EF007D2B11 /* Preview Assets.xcassets */; };
 		A5E4F9962617F106007D2B11 /* CustomSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9952617F106007D2B11 /* CustomSliderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderExamplesViewModel.swift; sourceTree = "<group>"; };
 		A5E4F9822617F0ED007D2B11 /* CustomSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E4F9852617F0ED007D2B11 /* CustomSliderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderApp.swift; sourceTree = "<group>"; };
-		A5E4F9872617F0ED007D2B11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A5E4F9872617F0ED007D2B11 /* SliderExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderExamplesScreen.swift; sourceTree = "<group>"; };
 		A5E4F9892617F0EF007D2B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5E4F98C2617F0EF007D2B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5E4F98E2617F0EF007D2B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +37,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A502FCC7261A2CBD00BAD74D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A5E4F9872617F0ED007D2B11 /* SliderExamplesScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		A502FCC9261A2D1000BAD74D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5E4F9952617F106007D2B11 /* CustomSliderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A502FCCA261A2D2200BAD74D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		A5E4F9792617F0ED007D2B11 = {
 			isa = PBXGroup;
 			children = (
@@ -55,11 +81,12 @@
 			isa = PBXGroup;
 			children = (
 				A5E4F9852617F0ED007D2B11 /* CustomSliderApp.swift */,
-				A5E4F9872617F0ED007D2B11 /* ContentView.swift */,
+				A502FCC7261A2CBD00BAD74D /* Screens */,
+				A502FCC9261A2D1000BAD74D /* Views */,
+				A502FCCA261A2D2200BAD74D /* ViewModels */,
 				A5E4F9892617F0EF007D2B11 /* Assets.xcassets */,
 				A5E4F98E2617F0EF007D2B11 /* Info.plist */,
 				A5E4F98B2617F0EF007D2B11 /* Preview Content */,
-				A5E4F9952617F106007D2B11 /* CustomSliderView.swift */,
 			);
 			path = CustomSlider;
 			sourceTree = "<group>";
@@ -141,8 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5E4F9882617F0ED007D2B11 /* ContentView.swift in Sources */,
+				A5E4F9882617F0ED007D2B11 /* SliderExamplesScreen.swift in Sources */,
 				A5E4F9862617F0ED007D2B11 /* CustomSliderApp.swift in Sources */,
+				A502FCCE261A2D8800BAD74D /* SliderExamplesViewModel.swift in Sources */,
 				A5E4F9962617F106007D2B11 /* CustomSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

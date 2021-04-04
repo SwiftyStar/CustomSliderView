@@ -1,14 +1,15 @@
 //
-//  ContentView.swift
+//  SliderExamplesScreen.swift
 //  CustomSlider
 
 import SwiftUI
 
-struct ContentView: View {
+struct SliderExamplesScreen: View {
     @State private var circleSliderPercent: Double = 0
     @State private var rectangleSliderPercent: Double = 0.5
-    @State private var defaultSliderPercent: Double = 0.67
+    @State private var defaultSliderPercent: Double = 0.6
     
+    private let viewModel = SliderExamplesViewModel()
     private let sliderHeight: CGFloat = 48
     
     private var rectangleSliderViewWidth: CGFloat {
@@ -135,7 +136,7 @@ struct ContentView: View {
     // Groups to avoid SwiftUI 10 view limit
     private var circleSliderGroup: some View {
         Group {
-            Text("\(self.circleSliderPercent)")
+            Text("Tempurature: \(self.viewModel.getTempurature(for: self.circleSliderPercent))")
             Spacer()
             self.circleSlider
         }
@@ -143,7 +144,7 @@ struct ContentView: View {
     
     private var rectangleSliderGroup: some View {
         Group {
-            Text("\(self.rectangleSliderPercent)")
+            Text("Opacity: \(self.rectangleSliderPercent)")
             Spacer()
             self.rectangleSlider
         }
@@ -151,7 +152,7 @@ struct ContentView: View {
     
     private var defaultSliderGroup: some View {
         Group {
-            Text("\(self.defaultSliderPercent)")
+            Text("Volume: \(self.viewModel.getVolume(for: self.defaultSliderPercent))")
             Spacer()
             self.defaultSlider
         }
@@ -187,8 +188,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SliderExamplesScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SliderExamplesScreen()
     }
 }

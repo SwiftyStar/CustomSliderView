@@ -1,9 +1,6 @@
 //
 //  CustomSliderApp.swift
 //  CustomSlider
-//
-//  Created by Jacob Starry on 4/2/21.
-//
 
 import SwiftUI
 
@@ -11,7 +8,7 @@ import SwiftUI
 struct CustomSliderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SliderExamplesScreen()
         }
     }
 }
