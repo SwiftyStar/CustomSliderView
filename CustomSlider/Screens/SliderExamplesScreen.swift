@@ -8,13 +8,10 @@ struct SliderExamplesScreen: View {
     @State private var circleSliderPercent: Double = 0
     @State private var rectangleSliderPercent: Double = 0.5
     @State private var defaultSliderPercent: Double = 0.6
+    @State private var thinSliderPercent: Double = 0.25
     
     private let viewModel = SliderExamplesViewModel()
     private let sliderHeight: CGFloat = 48
-    
-    private var rectangleSliderViewWidth: CGFloat {
-        0.8 * self.sliderHeight
-    }
     
     private var circleSliderBackgroundGradient: Gradient {
         Gradient(colors: [Color.blue.opacity(0.5), Color.blue])
@@ -27,6 +24,7 @@ struct SliderExamplesScreen: View {
             LinearGradient(gradient: self.circleSliderBackgroundGradient,
                            startPoint: .leading,
                            endPoint: .trailing)
+                .frame(height: self.sliderHeight)
                 .cornerRadius(cornerRadius)
         }
     }
@@ -63,7 +61,7 @@ struct SliderExamplesScreen: View {
     
     private var circleSliderView: some View {
         Circle()
-            .frame(width: self.sliderHeight)
+            .frame(width: self.sliderHeight, height: self.sliderHeight)
             .foregroundColor(.black)
             .overlay(self.circleSliderViewOverlay)
     }
@@ -84,20 +82,16 @@ struct SliderExamplesScreen: View {
     }
     
     private var rectangleSliderBackground: some View {
-        Color.red.opacity(self.rectangleSliderPercent)
-    }
-    
-    private var rectangleSliderViewOverlay: some View {
-        GeometryReader { geometry in
-            self.getArrow(from: geometry)
-        }
+        Rectangle()
+            .foregroundColor(        Color.red.opacity(self.rectangleSliderPercent))
+            .frame(height: self.sliderHeight)
     }
     
     private var rectangleSliderView: some View {
         Rectangle()
             .foregroundColor(.clear)
             .frame(width: self.sliderHeight, height: self.sliderHeight)
-            .overlay(self.rectangleSliderViewOverlay)
+            .overlay(self.getArrow())
     }
     
     private var rectangleSlider: some View {
@@ -107,7 +101,7 @@ struct SliderExamplesScreen: View {
             
             CustomSliderView(percentage: self.$rectangleSliderPercent)
                 .backgroundView(self.rectangleSliderBackground)
-                .slidingView(self.rectangleSliderView, viewWidth: self.rectangleSliderViewWidth)
+                .slidingView(self.rectangleSliderView, viewWidth: self.sliderHeight)
                 .frame(height: self.sliderHeight)
             
             Spacer()
@@ -126,6 +120,32 @@ struct SliderExamplesScreen: View {
                         .clipShape(RoundedRectangle(cornerRadius: 0.5 * sliderHeight))
                         .shadow(radius: 6)
                 )
+                .frame(height: self.sliderHeight)
+            
+            Spacer()
+                .frame(width: 16)
+        }
+    }
+    
+    private var thinSliderBackground: some View {
+        RoundedRectangle(cornerRadius: 6)
+            .frame(height: 12)
+    }
+    
+    private var thinSlidingView: some View {
+        Circle()
+            .foregroundColor(.blue)
+            .frame(width: self.sliderHeight, height: self.sliderHeight)
+    }
+    
+    private var thinSlider: some View {
+        HStack {
+            Spacer()
+                .frame(width: 16)
+            
+            CustomSliderView(percentage: self.$thinSliderPercent)
+                .backgroundView(self.thinSliderBackground)
+                .slidingView(self.thinSlidingView, viewWidth: self.sliderHeight)
                 .frame(height: self.sliderHeight)
             
             Spacer()
@@ -158,6 +178,14 @@ struct SliderExamplesScreen: View {
         }
     }
     
+    private var thinSliderGroup: some View {
+        Group {
+            Text("Thin percent: \(self.thinSliderPercent)")
+            Spacer()
+            self.thinSlider
+        }
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -167,16 +195,15 @@ struct SliderExamplesScreen: View {
             Spacer()
             self.defaultSliderGroup
             Spacer()
+            self.thinSliderGroup
+            Spacer()
         }
     }
     
-    private func getArrow(from geometry: GeometryProxy) -> some View {
-        let arrowDimension = geometry.size.height * 0.8
-        let topMargin = geometry.size.height * 0.1
-        
-        let startPoint = CGPoint(x: 0, y: topMargin)
-        let arrowTip = CGPoint(x: arrowDimension, y: topMargin + 0.5 * arrowDimension)
-        let bottomPoint = CGPoint(x: 0, y: topMargin + arrowDimension)
+    private func getArrow() -> some View {
+        let startPoint = CGPoint(x: 0, y: 0)
+        let arrowTip = CGPoint(x: self.sliderHeight, y: 0.5 * self.self.sliderHeight)
+        let bottomPoint = CGPoint(x: 0, y: self.sliderHeight)
         
         return Path { path in
             path.move(to: startPoint)

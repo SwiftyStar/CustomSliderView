@@ -27,49 +27,51 @@ struct CustomSliderView: View {
         self.slidingViewWidth = slidingViewWidth
     }
     
-    private var background: some View {
-        GeometryReader { geometry in
-            if let backgroundView = self.backgroundView {
-                backgroundView
-            } else {
-                let cornerRadius = geometry.size.height / 2
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .foregroundColor(Color.gray.opacity(0.75))
-            }
-        }
-    }
-    
-    private var slidingArea: some View {
-        GeometryReader { geometry in
-            let totalWidth = geometry.size.width
-            let height = geometry.size.height
-            
-            let draggableView = self.slidingView ?? self.defaultSlidingView(withHeight: height)
-            let slideWidth = self.slidingViewWidth ?? height
-            let offset = self.getOffset(totalWidth: totalWidth, slideWidth: slideWidth)
-            
-            let dragGesture = DragGesture()
-                .onChanged { newValue in
-                    self.draggingChanged(dragValue: newValue,
-                                         currentOffset: offset,
-                                         totalWidth: totalWidth,
-                                         slideWidth: slideWidth)
-                }
-            
-            HStack {
-                Spacer()
-                    .frame(width: offset)
-                draggableView
-                    .gesture(dragGesture)
-                Spacer()
-            }
-        }
-    }
-    
     var body: some View {
-        ZStack {
-            self.background
-            self.slidingArea
+        GeometryReader { geometry in
+            ZStack {
+                self.background(with: geometry)
+                self.slidingArea(with: geometry)
+            }
+        }
+    }
+    
+    private func background(with geometry: GeometryProxy) -> some View {
+        let height = geometry.size.height
+        
+        return self.backgroundView ?? self.defaultBackgroundView(withHeight: height)
+    }
+    
+    private func defaultBackgroundView(withHeight height: CGFloat) -> AnyView {
+        AnyView (
+            RoundedRectangle(cornerRadius: height / 2)
+                .foregroundColor(Color.gray.opacity(0.75))
+        )
+    }
+    
+    private func slidingArea(with geometry: GeometryProxy) -> some View {
+        let width = geometry.size.width
+        let height = geometry.size.height
+        
+        let draggableView = self.slidingView ?? self.defaultSlidingView(withHeight: height)
+        let slideWidth = self.slidingViewWidth ?? height
+        let offset = self.getOffset(totalWidth: width, slideWidth: slideWidth)
+        
+        let dragGesture = DragGesture()
+            .onChanged { newValue in
+                self.draggingChanged(dragValue: newValue,
+                                     currentOffset: offset,
+                                     totalWidth: width,
+                                     slideWidth: slideWidth)
+            }
+        
+        return HStack {
+            Spacer()
+                .frame(width: offset)
+            draggableView
+                .gesture(dragGesture)
+            Spacer()
+                .frame(minWidth: 0) // Oddly, the minWidth was 8 - a bug?
         }
     }
     
