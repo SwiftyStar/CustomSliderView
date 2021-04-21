@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A502FCCE261A2D8800BAD74D /* SliderExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */; };
+		A527A1DF262FA74D00FD3BB0 /* CustomSliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A527A1DE262FA74D00FD3BB0 /* CustomSliderViewModel.swift */; };
 		A5E4F9862617F0ED007D2B11 /* CustomSliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9852617F0ED007D2B11 /* CustomSliderApp.swift */; };
 		A5E4F9882617F0ED007D2B11 /* SliderExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4F9872617F0ED007D2B11 /* SliderExamplesScreen.swift */; };
 		A5E4F98A2617F0EF007D2B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E4F9892617F0EF007D2B11 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderExamplesViewModel.swift; sourceTree = "<group>"; };
+		A527A1DE262FA74D00FD3BB0 /* CustomSliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderViewModel.swift; sourceTree = "<group>"; };
 		A5E4F9822617F0ED007D2B11 /* CustomSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E4F9852617F0ED007D2B11 /* CustomSliderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderApp.swift; sourceTree = "<group>"; };
 		A5E4F9872617F0ED007D2B11 /* SliderExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderExamplesScreen.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				A502FCCD261A2D8800BAD74D /* SliderExamplesViewModel.swift */,
+				A527A1DE262FA74D00FD3BB0 /* CustomSliderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			files = (
 				A5E4F9882617F0ED007D2B11 /* SliderExamplesScreen.swift in Sources */,
 				A5E4F9862617F0ED007D2B11 /* CustomSliderApp.swift in Sources */,
+				A527A1DF262FA74D00FD3BB0 /* CustomSliderViewModel.swift in Sources */,
 				A502FCCE261A2D8800BAD74D /* SliderExamplesViewModel.swift in Sources */,
 				A5E4F9962617F106007D2B11 /* CustomSliderView.swift in Sources */,
 			);

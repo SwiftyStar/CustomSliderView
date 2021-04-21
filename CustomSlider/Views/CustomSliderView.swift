@@ -10,6 +10,7 @@ struct CustomSliderView: View {
     private let backgroundView: AnyView?
     private let slidingView: AnyView?
     private let slidingViewWidth: CGFloat?
+    private let viewModel = CustomSliderViewModel()
     
     /// Custom Slider
     /// - Parameter percentage: Binding<Double> that acts as a percentage for how far the slider has been dragged. If given an initial value other than 0, the slider will start at that point. Use to make calculations based on how far the user drags the slider.
@@ -55,14 +56,16 @@ struct CustomSliderView: View {
         
         let draggableView = self.slidingView ?? self.defaultSlidingView(withHeight: height)
         let slideWidth = self.slidingViewWidth ?? height
-        let offset = self.getOffset(totalWidth: width, slideWidth: slideWidth)
+        let offset = self.viewModel.getOffset(percentage: self.percentage,
+                                              totalWidth: width,
+                                              slideWidth: slideWidth)
         
         let dragGesture = DragGesture()
             .onChanged { newValue in
-                self.draggingChanged(dragValue: newValue,
-                                     currentOffset: offset,
-                                     totalWidth: width,
-                                     slideWidth: slideWidth)
+                self.percentage = self.viewModel.getPercentage(dragValue: newValue,
+                                                               currentOffset: offset,
+                                                               totalWidth: width,
+                                                               slideWidth: slideWidth)
             }
         
         return HStack {
@@ -81,27 +84,6 @@ struct CustomSliderView: View {
                 .foregroundColor(.white)
                 .frame(width: height, height: height)
         )
-    }
-    
-    private func draggingChanged(dragValue: DragGesture.Value, currentOffset: CGFloat, totalWidth: CGFloat, slideWidth: CGFloat) {
-        let startX = dragValue.startLocation.x
-        let newX = dragValue.location.x
-        
-        let offset = newX - startX
-        let adjustedOffset = offset + currentOffset
-        
-        let width = totalWidth - slideWidth
-        let percentage = adjustedOffset / width
-        let adjustedPercentage = max(0, min(percentage, 1))
-        
-        self.percentage = Double(adjustedPercentage)
-    }
-    
-    private func getOffset(totalWidth: CGFloat, slideWidth: CGFloat) -> CGFloat {
-        let width = totalWidth - slideWidth
-        let offset = width * CGFloat(self.percentage)
-        
-        return offset
     }
     
     /// Adds a custom background view to the slider
